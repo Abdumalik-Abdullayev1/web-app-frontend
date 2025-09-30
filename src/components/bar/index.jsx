@@ -22,7 +22,7 @@ const Bar = () => {
                     <span>Do'kon</span>
                 </Link>
                 <Link to={'/basket'} className={linkClass('/basket')}>
-                    <IoIosCart style={{fontSize: "25px" }} />
+                    <IoIosCart style={{fontSize: "26px" }} />
                     <span>Savat</span>
                 </Link>
                 <Link to={'/report'} className={linkClass('/report')}>

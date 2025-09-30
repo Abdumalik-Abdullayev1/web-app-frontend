@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import Logo from '../../assets/Logo.png';
 import { Link } from "react-router-dom";
-import { BsReceiptCutoff } from "react-icons/bs";
+import { HiOutlineShoppingBag } from "react-icons/hi2";
 
 
 const Header = () => {
@@ -41,7 +41,7 @@ const Header = () => {
                 <img src={Logo} alt="Logo" className="h-10 dark:shadow-md" />
                 <div className="flex items-center gap-5">
                     <Link to={'/orderList'}>
-                        <BsReceiptCutoff style={{ fontSize: "28px" }} />
+                        <HiOutlineShoppingBag style={{ fontSize: "28px" }} />
                     </Link>
                     <button
                         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}

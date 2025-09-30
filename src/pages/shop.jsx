@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { IoMdSearch } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useCategories from "../hooks/useCategories";
 import CategorySwiper from "../components/swiperCategories";
 import useProducts from "../hooks/useProducts";
@@ -9,6 +9,7 @@ import useAddBasket from "../hooks/useAddBasket";
 
 const Shop = () => {
   const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
+  const navigate = useNavigate();
   const {
     categories,
     meta,
@@ -29,9 +30,11 @@ const Shop = () => {
   });
 
   const { counts, updateQuantity } = useAddBasket(tgUser?.id);
-  
+
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
+    // navigate(`/products/${category.id}`);
+    console.log("Selected Category ID:", category, "hello");
   };
   const filteredProducts = useMemo(() => {
     if (!Array.isArray(products)) return [];
@@ -59,18 +62,44 @@ const Shop = () => {
         <IoMdSearch className="text-2xl" />
       </div>
 
-      
+
       <div className="p-4">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-2xl font-bold">Kategoriyalar</h2>
-          <Link
+          {/* <Link
             to={"/categories"}
             className="text-sm text-blue-600 hover:underline"
           >
             Barchasini ko‘rish
-          </Link>
+          </Link> */}
         </div>
         {categoriesError && <p>Xato: {categoriesError}</p>}
+        {/* <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {categories.map((c, index) => (
+            <div
+              key={index}
+              onClick={() => handleCategoryClick(c)}
+              className={`cursor-pointer flex flex-col items-center justify-center text-center transition-all ${c.active
+                  ? "text-[rgb(22,113,98)]"
+                  : "text-gray-800 dark:text-white"
+                }`}
+            >
+              <div
+                className={`w-24 h-24 rounded-full flex items-center justify-center mb-2 shadow-md overflow-hidden ${c.active ? "bg-[rgb(22,113,98)]" : "bg-gray-100"
+                  }`}
+              >
+                <img
+                  src={c.imageUrl || "/src/assets/no-photo.jpg"}
+                  alt={c.title}
+                  className="w-25 h-25 object-contain"
+                />
+              </div>
+              <p className="text-sm font-medium">
+                {c.name.length > 20 ? c.name.slice(0, 20) + "..." : c.name}
+              </p>
+            </div>
+          ))}
+        </div> */}
         {categories && (
           <CategorySwiper
             categories={categories}
@@ -90,7 +119,7 @@ const Shop = () => {
               </p>
             </div>
           )}
-          
+
           <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4">
             {productsLoading
               ? Array.from({ length: 6 }).map((_, i) => (

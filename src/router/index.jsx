@@ -1,4 +1,4 @@
-import React from 'react'
+ import React from 'react'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 import App from '../App';
 import Home from '../pages/home'
@@ -9,6 +9,7 @@ import Categories from '../pages/categories'
 import Detail from '../pages/detail'
 import Formalize from '../pages/formalize'
 import OrdersPage from '../pages/orderList';
+import Products from '../pages/products';
 
 const Router = () => {
     const router = createBrowserRouter(
@@ -22,6 +23,7 @@ const Router = () => {
                 <Route path='/detail' element={<Detail/>}/>
                 <Route path='/formalize' element={<Formalize/>}/>
                 <Route path='/orderList' element={<OrdersPage/>}/>
+                <Route path='/products/:categoryId' element={<Products/>}/>
             </Route>
         )
     );
